@@ -1,49 +1,104 @@
 package com.july26tha;
 
 public class Card {
-
-	private int rank;
-	private int suit;
-	private final static String[] cardSuit = {"Clubs", "Spades", "Diamonds", "Hearts"};
-	private final static String[] cardRank = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
-	
-	public Card() {
+		private int rank;
+		private int suit;
 		
-	}
+		public static final int ACE = 1;
+		public static final int TWO = 2;
+		public static final int THREE = 3;
+		public static final int FOUR = 4;
+		public static final int FIVE = 5;
+		public static final int SIX = 6;
+		public static final int SEVEN = 7;
+		public static final int EIGHT = 8;
+		public static final int NINE = 9;
+		public static final int TEN = 10;
+		public static final int JACK = 11;
+		public static final int QUEEN = 12;
+		public static final int KING = 13;
+		
+		public static final int SPADES = 1;
+		public static final int HEARTS = 2;
+		public static final int DIAMONDS = 3;
+		public static final int CLUBS = 4;
+		
+		private static final String SPADES_STRING = "S";
+		private static final String HEARTS_STRING = "H";
+		private static final String DIAMONDS_STRING = "D";
+		private static final String CLUBS_STRING = "C";
+		
+		private static final String ACE_STRING = "A";
+		private static final String JACK_STRING = "J";
+		private static final String QUEEN_STRING = "Q";
+		private static final String KING_STRING = "K";
+		
+		public Card() {}
+		
+		public Card (int rank , int suit ) {
+			try {
+				if ((rank >= ACE && rank <= KING) && (suit >= SPADES && suit <= CLUBS)) {
+					this.rank = rank;
+					this.suit = suit;
+				}
+				else {
+					throw new Exception("Invalid Card");
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 
-	public Card(int rank, int suit) {
-		setRank(rank);
-		setSuit(suit);
-	}
+		public int getRank() {
+			return rank;
+		}
 
-	protected int getRank() {
-		return rank;
-	}
-
-	protected void setRank(int rank) {
-		if((rank > 0) || (rank < 14)) {
+		public void setRank(int rank) {
 			this.rank = rank;
 		}
-		else {
-			System.out.println("Invalid Rank");
+
+		public int getSuit() {
+			return suit;
 		}
-	}
 
-	protected int getSuit() {
-		return suit;
-	}
-
-	protected void setSuit(int suit) {
-		if((suit > 0) || (suit < 5)) {
+		public void setSuit(int suit) {
 			this.suit = suit;
 		}
-		else {
-			System.out.println("Invalid Suit");
+		
+		public String toString() {
+			String suitString = "";
+			String rankString = "";
+			switch (suit) {
+				case SPADES:
+					suitString = SPADES_STRING;
+					break;
+				case DIAMONDS:
+					suitString = DIAMONDS_STRING;
+					break;
+				case HEARTS:
+					suitString = HEARTS_STRING;
+					break;
+				case CLUBS:
+					suitString = CLUBS_STRING;
+					break;
+			}
+			switch (rank) {
+				case ACE:
+					rankString = ACE_STRING;
+					break;
+				case JACK:
+					rankString = JACK_STRING;
+					break;
+				case QUEEN:
+					rankString = QUEEN_STRING;
+					break;
+				case KING:
+					rankString = KING_STRING;
+					break;
+				default:
+					rankString = String.valueOf(rank);
+			}
+			return rankString+suitString;
 		}
-	}
-
-	@Override
-	public String toString() {
-		return cardRank[rank - 1] + " of " + cardSuit[suit - 1];
-	}
+		
 }

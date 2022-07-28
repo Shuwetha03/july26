@@ -5,14 +5,14 @@ public class Player {
 
 	private String name;
 	private int coins;
-	private String chosenCard;
+	private Card chosenCard;
 	private String orientation;
 	
 	public Player() {
 	
 	}
 
-	public Player(String name, int coins, String chosenCard, String orientation) {
+	public Player(String name, int coins, Card chosenCard, String orientation) {
 		this.name = name;
 		this.coins = coins;
 		this.chosenCard = chosenCard;
@@ -35,11 +35,11 @@ public class Player {
 		this.coins = coins;
 	}
 
-	protected String getChosenCard() {
+	protected Card getChosenCard() {
 		return chosenCard;
 	}
 
-	protected void setChosenCard(String chosenCard) {
+	protected void setChosenCard(Card chosenCard) {
 		this.chosenCard = chosenCard;
 	}
 

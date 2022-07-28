@@ -3,6 +3,7 @@ package com.july26tha;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Deck{
 	
@@ -32,7 +33,20 @@ public class Deck{
 		return shuffledCards;
 	}
 	
-	public Card deal(List<Card> cards) {
-		return cards.remove(0);
+	public String deal(Map<String, Player> playerDetails) {
+		List<Card> list = shuffle();
+		String host = "";
+			Card in = list.remove(0);
+			Card out = list.remove(0);
+			for(Map.Entry<String, Player> element : playerDetails.entrySet()) {
+				if(element.getValue() == null) {
+					host = element.getKey();
+				}
+				else if((in.equals(element.getValue().getChosenCard()) && element.getValue().getOrientation().equalsIgnoreCase("IN"))
+						|| (out.equals(element.getValue().getChosenCard()) && element.getValue().getOrientation().equalsIgnoreCase("OUT"))) {
+					return element.getKey();
+				}
+			}
+			return host;
 	}
 }
